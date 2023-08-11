@@ -1,10 +1,14 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require("mongoose")
 
 const tweetSchema = new Schema(
   {
+    author: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    },
     content: {
       type: String,
-        required: true,
+      required: true,
       maxlength: 280,
     },
     likes: [{
@@ -19,8 +23,8 @@ const tweetSchema = new Schema(
   {
     timestamps: true,
   }
-);
+)
 
-const Tweet = model("Tweet", tweetSchema);
+const Tweet = model("Tweet", tweetSchema)
 
-module.exports = Tweet;
+module.exports = Tweet
