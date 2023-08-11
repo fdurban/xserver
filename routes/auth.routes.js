@@ -1,14 +1,9 @@
 const express = require("express")
 const router = express.Router()
-
 const bcrypt = require("bcrypt")
-
 const jwt = require("jsonwebtoken")
-
 const User = require("../models/User.model")
-
 const { isAuthenticated } = require("../middleware/jwt.middleware.js")
-
 const saltRounds = 10
 
 router.post("/signup", (req, res, next) => {
@@ -34,7 +29,8 @@ router.post("/signup", (req, res, next) => {
     return
   }
 
-  User.findOne({ email })
+  User
+    .findOne({ email })
     .then((foundUser) => {
       if (foundUser) {
         res.status(400).json({ message: "User already exists." })

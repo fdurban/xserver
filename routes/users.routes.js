@@ -1,6 +1,6 @@
-const router = require("express");
+const router = require("express").Router()
 
-const User = require('./../models/User.model')
+const User = require('../models/User.model')
 
 // Ruta para obtener todos los usuarios
 router.get("/users", (req, res, next) => {
@@ -14,7 +14,7 @@ router.get("/users", (req, res, next) => {
 })
 
 // Ruta para obtener un usuario por su ID
-router.get("/users/:userId", (req, res, next) => {
+router.get("/:userId", (req, res, next) => {
   User.findById(req.params.userId)
     .then(user => {
       if (!user) {
